@@ -8,7 +8,7 @@ def plot_NDVI_time_series():
     fdir = 'data/NDVI/'
     date_list = []
     mean_list = []
-    for f in os.listdir(fdir):
+    for f in T.listdir(fdir):
         if not f.endswith('.tif'):
             continue
         date = f.split('.')[0]
@@ -58,8 +58,8 @@ def plot_NDVI_average_spatial_map():
         arr = ToRaster().raster2array(fpath)[0]
         arr = np.array(arr,dtype=float) / 10000.
 
-        # arr[arr>1] = np.nan
-        # arr[arr<0] = np.nan
+        arr[arr>1] = np.nan
+        arr[arr<0] = np.nan
         arr_list.append(arr)
     # pprint.pprint(arr_list);exit()
 
@@ -74,5 +74,5 @@ def plot_NDVI_average_spatial_map():
 
 
 # T.color_map_choice()
-# plot_NDVI_time_series()
-plot_NDVI_average_spatial_map()
+plot_NDVI_time_series()
+# plot_NDVI_average_spatial_map()
